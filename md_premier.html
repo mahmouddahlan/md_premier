@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MD Premier — Commercial & Residential General Contracting</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --blue: #2B4EE8;
+    --blue-dark: #1a35c4;
+    --blue-light: #E6EEFF;
+    --black: #111111;
+    --gray: #6B7280;
+    --light: #F7F9FF;
+    --font: system-ui, -apple-system, sans-serif;
+  }
+  body { font-family: var(--font); background: white; color: var(--black); }
+
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2rem; border-bottom: 0.5px solid #E5E7EB;
+    position: sticky; top: 0; background: white; z-index: 100;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo-icon {
+    width: 38px; height: 38px; background: var(--blue); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-logo-icon svg { width: 22px; height: 22px; fill: none; stroke: white; stroke-width: 2; }
+  .nav-brand { font-size: 17px; font-weight: 500; color: var(--black); }
+  .nav-brand span { color: var(--blue); }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { font-size: 14px; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta {
+    background: var(--blue); color: white; border: none; padding: 8px 20px;
+    border-radius: 8px; font-size: 14px; cursor: pointer; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--blue-dark); }
+
+  .hero { padding: 5rem 2rem 4rem; background: var(--light); text-align: center; border-bottom: 0.5px solid #E5E7EB; }
+  .hero-badge {
+    display: inline-block; background: var(--blue-light); color: var(--blue);
+    font-size: 12px; padding: 4px 14px; border-radius: 20px; margin-bottom: 1.5rem;
+    font-weight: 500; letter-spacing: 0.03em;
+  }
+  .hero h1 { font-size: 42px; font-weight: 500; line-height: 1.2; margin-bottom: 1rem; }
+  .hero h1 span { color: var(--blue); }
+  .hero p { font-size: 16px; color: var(--gray); max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--blue); color: white; border: none; padding: 12px 28px;
+    border-radius: 8px; font-size: 15px; cursor: pointer; transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--blue-dark); }
+  .btn-secondary {
+    background: white; color: var(--blue); border: 1.5px solid var(--blue); padding: 12px 28px;
+    border-radius: 8px; font-size: 15px; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-secondary:hover { background: var(--blue-light); }
+  .hero-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 3rem; flex-wrap: wrap; }
+  .stat-item { text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 500; color: var(--blue); }
+  .stat-label { font-size: 13px; color: var(--gray); margin-top: 2px; }
+
+  section { padding: 4rem 2rem; }
+  .section-label { font-size: 12px; color: var(--blue); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .section-title { font-size: 28px; font-weight: 500; margin-bottom: 0.5rem; }
+  .section-sub { font-size: 15px; color: var(--gray); margin-bottom: 2.5rem; line-height: 1.6; }
+
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .service-card {
+    background: white; border: 0.5px solid #E5E7EB; border-radius: 12px;
+    padding: 1.5rem; transition: border-color 0.2s;
+  }
+  .service-card:hover { border-color: var(--blue); }
+  .service-icon {
+    width: 44px; height: 44px; background: var(--blue-light); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;
+    color: var(--blue); font-size: 22px;
+  }
+  .service-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+  .service-card p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+  .portfolio-section { background: var(--light); }
+  .portfolio-card {
+    background: white; border-radius: 12px; overflow: hidden;
+    border: 0.5px solid #E5E7EB; transition: border-color 0.2s;
+  }
+  .portfolio-card:hover { border-color: var(--blue); }
+
+  /* =============================================
+     PORTFOLIO IMAGES — swap src="..." with your photo paths
+     e.g. src="photos/kitchen.jpg"
+     ============================================= */
+  .portfolio-img {
+    width: 100%; height: 200px; object-fit: cover; display: block;
+  }
+
+  .portfolio-info { padding: 1rem; }
+  .portfolio-info h3 { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .portfolio-info p { font-size: 12px; color: var(--gray); }
+  .portfolio-tag {
+    display: inline-block; font-size: 11px; padding: 3px 10px;
+    border-radius: 20px; margin-top: 8px; font-weight: 500;
+  }
+  .tag-comm { background: var(--blue-light); color: var(--blue); }
+  .tag-res { background: #D1FAE5; color: #065F46; }
+
+  .tabs { display: flex; gap: 8px; margin-bottom: 2rem; }
+  .tab {
+    padding: 8px 20px; border-radius: 8px; border: 0.5px solid #E5E7EB;
+    background: white; font-size: 14px; cursor: pointer; transition: all 0.2s; color: var(--gray);
+  }
+  .tab.active { background: var(--blue); color: white; border-color: var(--blue); }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .why-card { padding: 1.5rem; border-radius: 12px; background: var(--light); text-align: center; }
+  .why-icon { font-size: 28px; color: var(--blue); margin-bottom: 0.75rem; }
+  .why-card h3 { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .why-card p { font-size: 13px; color: var(--gray); line-height: 1.5; }
+
+
+
+  .service-area-section { background: white; }
+  .service-area-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 24px;
+    align-items: center;
+  }
+  .service-area-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .service-area-list span {
+    background: var(--light);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--gray);
+    border: 0.5px solid #E5E7EB;
+  }
+  .map-box {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 0.5px solid #E5E7EB;
+    min-height: 350px;
+    background: var(--light);
+  }
+  .map-box iframe {
+    width: 100%;
+    height: 350px;
+    border: 0;
+    display: block;
+  }
+
+  .quote-section { background: var(--light); }
+  .quote-form {
+    max-width: 580px; margin: 0 auto;
+    background: white; border: 0.5px solid #E5E7EB; border-radius: 16px; padding: 2rem;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+  .form-group label { font-size: 13px; font-weight: 500; }
+  .form-group input, .form-group select, .form-group textarea {
+    padding: 10px 14px; border: 0.5px solid #D1D5DB; border-radius: 8px;
+    font-size: 14px; font-family: var(--font); transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none; border-color: var(--blue);
+  }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-submit {
+    width: 100%; background: var(--blue); color: white; border: none;
+    padding: 13px; border-radius: 8px; font-size: 15px; cursor: pointer;
+    transition: background 0.2s; margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--blue-dark); }
+  .form-success {
+    display: none; text-align: center; padding: 2rem;
+    color: #065F46; background: #D1FAE5; border-radius: 12px; margin-top: 1rem; font-size: 15px;
+  }
+.reviews-section{
+    background:#F7F9FF;
+}
+
+.reviews-wrapper{
+    position:relative;
+    display:flex;
+    align-items:center;
+}
+
+.reviews-slider{
+    display:flex;
+    gap:20px;
+    overflow-x:auto;
+    scroll-behavior:smooth;
+    padding:10px 5px;
+    scrollbar-width:none;
+}
+
+.reviews-slider::-webkit-scrollbar{
+    display:none;
+}
+
+.review-card{
+    min-width:360px;
+    max-width:360px;
+    background:#fff;
+    border:1px solid #E5E7EB;
+    border-radius:18px;
+    padding:28px;
+    flex-shrink:0;
+    transition:.25s;
+}
+
+.review-card:hover{
+    border-color:#2B4EE8;
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(0,0,0,.08);
+}
+
+.stars{
+    color:#FBBF24;
+    font-size:22px;
+    margin-bottom:16px;
+    letter-spacing:2px;
+}
+
+.review-card p{
+    color:#6B7280;
+    line-height:1.7;
+    font-size:14px;
+    margin-bottom:22px;
+}
+
+.review-author strong{
+    display:block;
+    font-size:15px;
+    color:#111;
+}
+
+.review-author span{
+    font-size:12px;
+    color:#6B7280;
+}
+
+.review-btn{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    border:none;
+    background:#fff;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+    cursor:pointer;
+    font-size:22px;
+    color:#2B4EE8;
+    z-index:2;
+}
+
+.review-btn:hover{
+    background:#2B4EE8;
+    color:#fff;
+}
+
+.left{
+    margin-right:10px;
+}
+
+.right{
+    margin-left:10px;
+}
+
+.logo{
+  height:55px;
+  width:auto;
+  display:block;
+}
+
+
+  footer {
+    background: #111; color: #ccc; padding: 2rem; text-align: center;
+    font-size: 13px;
+  }
+  footer .footer-brand { color: white; font-size: 16px; font-weight: 500; margin-bottom: 0.5rem; }
+  footer .footer-brand span { color: var(--blue); }
+  footer a { color: #888; text-decoration: none; margin: 0 0.75rem; }
+  footer a:hover { color: var(--blue); }
+  footer .footer-contact { margin: 1rem 0; }
+
+  @media (max-width: 800px) {
+    .service-area-wrap { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 28px; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =============================================
+     NAVBAR
+     - Change "MD Premier" brand name below
+     - Add/remove nav links as needed
+     ============================================= -->
+<nav>
+  <div class="nav-logo">
+    <img src="logo.png" class="logo" alt="MD Premier">
+    <span class="nav-brand"><span>MD</span> Premier</span>
+
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why MD Premier</a></li>
+    <!--<li><a href="#portfolio">Our Work</a></li>  --->
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#quote">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('quote').scrollIntoView({behavior:'smooth'})">Request Consultation</button>
+</nav>
+
+<!-- =============================================
+     HERO SECTION
+     - Edit the badge text, headline, subtext
+     - Change the stat numbers (200+, 15+, etc.)
+     ============================================= -->
+<div class="hero">
+  <div class="hero-badge">Commercial & Residential · General Contracting</div>
+  <h1>Built on Quality.<br><span>Honest Work. Exceptional Results.</span></h1>
+  <p>MD Premier provides professional general contracting, renovations, and construction services for residential and commercial projects across Ontario.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('quote').scrollIntoView({behavior:'smooth'})">Request Consultation</button>
+    <!---<button class="btn-secondary" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">View Portfolio</button> -->
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Years of Experience</div></div>
+    <div class="stat-item">
+      <div class="stat-num"><i class="ti ti-award"></i></div>
+      <div class="stat-label">Home Depot Local Pro</div>
+  </div>
+  <div class="stat-item"><div class="stat-num">✓</div><div class="stat-label">Licensed & Insured</div></div>
+</div>
+</div>
+
+<!-- =============================================
+     SERVICES SECTION
+     - Edit the h3 (title) and p (description) in each card
+     - Add more .service-card blocks to add services
+     - Icon names from tabler-icons.io (search for any icon)
+     ============================================= -->
+<!-- =============================================
+     SERVICES SECTION
+     ============================================= -->
+     <section id="services">
+      <div class="section-label">OUR EXPERTISE</div>
+      <div class="section-title">Construction & Renovation Services</div>
+      <p class="section-sub">MD Premier provides professional residential and commercial construction, renovation, and remodeling services with quality craftsmanship and attention to detail.</p>
+      <div class="services-grid">
+    
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-building"></i></div>
+          <h3>General Contracting</h3>
+          <p>Complete project management and construction solutions from start to finish.</p>
+        </div>
+    
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-refresh"></i></div>
+          <h3>Home Renovations</h3>
+          <p>Transform your home with full interior and exterior renovations tailored to your vision.</p>
+        </div>
+    
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-tools"></i></div>
+          <h3>Kitchen Remodeling</h3>
+          <p>Modern, functional, and custom-designed kitchens built to fit your lifestyle.</p>
+        </div>
+    
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-bath"></i></div>
+          <h3>Bathroom Remodeling</h3>
+          <p>High-quality bathroom renovations with premium finishes and expert workmanship.</p>
+        </div>
+    
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-home-2"></i></div>
+          <h3>Basement Remodeling</h3>
+          <p>Transform unfinished basements into functional living spaces, legal units, or rental suites that maximize your home's value.</p>
+        </div>
+    
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-layout-grid"></i></div>
+          <h3>Flooring & Tile Installation</h3>
+          <p>Professional installation of hardwood, vinyl, laminate, tile, and more.</p>
+        </div>
+    
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-wall"></i></div>
+          <h3>Drywall Installation & Repair</h3>
+          <p>Drywall installation, repairs, taping, mudding, and finishing.</p>
+        </div>
+    
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-brush"></i></div>
+          <h3>Interior & Exterior Painting</h3>
+          <p>Premium painting services that refresh and protect your property.</p>
+        </div>
+    
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-fence"></i></div>
+          <h3>Deck & Patio Construction</h3>
+          <p>Custom outdoor living spaces designed for durability and style.</p>
+        </div>
+    
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-hammer"></i></div>
+          <h3>Framing & Structural Work</h3>
+          <p>Precision structural framing for new builds, additions, and load-bearing modifications.</p>
+        </div>
+
+
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-settings"></i></div>
+          <h3>Home Repairs & Finishing</h3>
+          <p>From minor repairs and finishing touches to garage epoxy coatings and painting, we complete every project with precision.</p>
+        </div>
+
+        <div class="service-card"> 
+          <div class="service-icon"> <i class="ti ti-pencil"></i> </div> 
+          <h3>Design & Planning</h3> 
+          <p>Our design and architectural team creates practical plans tailored to your project.</p> 
+        </div>
+
+      </div>
+    </section>
+
+<!-- =============================================
+     PORTFOLIO SECTION
+     - Replace src="https://placehold.co/..." with your real photo paths
+       e.g. src="photos/kitchen-reno.jpg"
+     - Edit h3 (project name) and p (description)
+     - Change data-type="residential" or "commercial" for tab filtering
+     - Add more .portfolio-card blocks for more projects
+     ============================================= -->
+<!----
+<section id="portfolio" class="portfolio-section">
+  <div class="section-label">FEATURED PROJECTS</div>
+  <div class="section-title">Our Recent Work</div>
+  <p class="section-sub">Explore a selection of residential and commercial projects completed by MD Premier, showcasing our commitment to quality craftsmanship and attention to detail.</p>
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('all', this)">All projects</button>
+    <button class="tab" onclick="switchTab('residential', this)">Residential</button>
+    <button class="tab" onclick="switchTab('commercial', this)">Commercial</button>
+  </div>
+  <div class="portfolio-grid" id="portfolio-grid">
+
+    <div class="portfolio-card" data-type="residential">
+      <img class="portfolio-img" src="https://placehold.co/400x200/DBEAFE/1E40AF?text=Oakwood+Home" alt="Oakwood family home">
+      <div class="portfolio-info">
+        <h3>Oakwood family home</h3>
+        <p>Full gut renovation, 3,200 sq ft</p>
+        <span class="portfolio-tag tag-res">Residential</span>
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-type="commercial">
+      <img class="portfolio-img" src="https://placehold.co/400x200/EDE9FE/5B21B6?text=Downtown+Office" alt="Downtown office fit-out">
+      <div class="portfolio-info">
+        <h3>Downtown office fit-out</h3>
+        <p>6,000 sq ft commercial space</p>
+        <span class="portfolio-tag tag-comm">Commercial</span>
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-type="residential">
+      <img class="portfolio-img" src="https://placehold.co/400x200/D1FAE5/065F46?text=Master+Bath" alt="Master bath and kitchen remodel">
+      <div class="portfolio-info">
+        <h3>Master bath & kitchen</h3>
+        <p>High-end residential remodel</p>
+        <span class="portfolio-tag tag-res">Residential</span>
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-type="commercial">
+      <img class="portfolio-img" src="https://placehold.co/400x200/FEE2E2/991B1B?text=Retail+Plaza" alt="Retail plaza renovation">
+      <div class="portfolio-info">
+        <h3>Retail plaza renovation</h3>
+        <p>Multi-unit commercial strip</p>
+        <span class="portfolio-tag tag-comm">Commercial</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+--->
+<!-- =============================================
+     WHY MD PREMIER
+     - Edit each h3 and p in the .why-card blocks
+     ============================================= -->
+<section id="why">
+  <div class="section-label">Why MD Premier</div>
+  <div class="section-title">Built on Trust. Driven by Quality.</div>
+  <p class="section-sub">We deliver exceptional craftsmanship, transparent communication, and reliable project management from consultation to completion.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon"><i class="ti ti-shield-check"></i></div>
+      <h3>Licensed & insured</h3>
+      <p>Your project is completed by a fully licensed and insured contractor, giving you confidence and peace of mind.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><i class="ti ti-clipboard-check"></i></div>
+      <h3>Reliable Project Management</h3>
+      <p>From planning and permits to construction and finishing, we coordinate every step to keep your project running smoothly.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><i class="ti ti-receipt"></i></div>
+      <h3>Transparent pricing</h3>
+      <p>Clear, detailed estimates with honest pricing and no hidden surprises.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><i class="ti ti-star"></i></div>
+      <h3>Quality craftsmanship</h3>
+      <p>We take pride in every detail, from structure to finish.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================
+     CLIENT REVIEWS
+     ============================================= -->
+<section id="reviews" class="reviews-section">
+
+  <div class="section-label">CLIENT REVIEWS</div>
+  <div class="section-title">Trusted by Homeowners & Businesses</div>
+  <p class="section-sub">
+    See what our clients have to say about working with MD Premier.
+  </p>
+
+  <div class="reviews-wrapper">
+
+    <button class="review-btn left" onclick="scrollReviews(-1)">
+      <i class="ti ti-chevron-left"></i>
+    </button>
+
+    <div class="reviews-slider" id="reviews-slider">
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>
+          "Mond and his team finished our basement and turned it into a beautiful legal living unit. They were easy to work with, kept everything organized, and the final result was exactly what we wanted. Highly recommend."
+        </p>
+        <div class="review-author">
+          <strong>Shane M.</strong>
+          <span>Basement Renovation</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>
+          "We completely renovated our kitchen with new cabinets, countertops, and a large island. Mond helped us through the entire process and the quality of the work was excellent. Our kitchen looks brand new."
+        </p>
+        <div class="review-author">
+          <strong>Jess A.</strong>
+          <span>Kitchen Remodeling</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>
+          "Our bathroom was completely remodeled with a new shower, flooring, and fresh paint. The project was completed on schedule and everything turned out great. We couldn't be happier."
+        </p>
+        <div class="review-author">
+          <strong>Rayan A.</strong>
+          <span>Bathroom Renovation</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>
+          "MD Premier handled our full home renovation, including flooring and painting throughout the house. Mond communicated with us every step of the way and delivered exactly what was promised."
+        </p>
+        <div class="review-author">
+          <strong>Rick J.</strong>
+          <span>Full Home Renovation</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>
+          "We had new flooring installed throughout our home and the attention to detail was impressive. The work was clean, professional, and completed on time. We would definitely use MD Premier again."
+        </p>
+        <div class="review-author">
+          <strong>Khaled S.</strong>
+          <span>Flooring Installation</span>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="review-btn right" onclick="scrollReviews(1)">
+      <i class="ti ti-chevron-right"></i>
+    </button>
+
+  </div>
+
+</section>
+
+<!-- =============================================
+     QUOTE FORM
+     - This is a frontend-only form (no emails sent yet)
+     - To actually receive emails, connect it to Formspree:
+       1. Go to formspree.io and create a free account
+       2. Create a form and get your endpoint URL
+       3. Replace the fetch() URL in the script below
+     ============================================= -->
+<section id="quote" class="quote-section">
+  <div style="text-align:center; margin-bottom:2rem;">
+    <div class="section-label">Get in touch</div>
+    <div class="section-title">Request Consultation</div>
+    <p class="section-sub">Tell us about your project and requirements, and our team will contact you as soon as possible.</p>
+  </div>
+  <form class="quote-form" action="https://formspree.io/f/xeewvyjw" method="POST">
+    <div class="form-row">
+      <div class="form-group"><label>First name</label><input type="text" id="fname" name="First Name" placeholder="John" required></div>
+      <div class="form-group"><label>Last name</label><input type="text" id="lname" name="Last Name" placeholder="Smith" required></div>
+    </div>
+    <div class="form-group"><label>Email</label><input type="email" id="email" name="Email" placeholder="john@email.com" required></div>
+    <div class="form-group"><label>Phone</label><input type="tel" id="phone" name="Phone" placeholder="(416) 555-0100" required></div>
+    <div class="form-group">
+      <label>Project type</label>
+      <select id="project-type" name="Project Type" required>
+        <option value="">Select a service...</option>
+        <option>General Contracting</option>
+        <option>Home Renovation</option>
+        <option>Kitchen Remodeling</option>
+        <option>Bathroom Remodeling</option>
+        <option>Basement Remodeling / Legal Suite</option>
+        <option>Flooring & Tile Installation</option>
+        <option>Drywall Installation & Repair</option>
+        <option>Interior Painting</option>
+        <option>Exterior Painting</option>
+        <option>Deck & Patio Construction</option>
+        <option>Framing & Structural Work</option>
+        <option>Design & Planning</option>
+        <option>Commercial Construction / Renovation</option>
+        <option>Home Repairs & Finishing</option>
+        <option>Custom Project / Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Tell us about your project</label>
+      <textarea
+      id="message"
+      name="Project Details"
+      placeholder="Brief description, timeline, and any other details..."
+      required></textarea>
+    </div>
+    <button class="form-submit" type="submit">
+      Send Request
+    </button>
+    <div class="form-success" id="form-success">
+      <i class="ti ti-circle-check" style="font-size:28px;display:block;margin-bottom:8px"></i>
+      Thanks! We'll be in touch within 24 hours.
+    </div>
+  </form>
+</section>
+
+<!-- =============================================
+     FOOTER
+     - Update phone number, email, and copyright year
+     ============================================= -->
+<footer>
+  <div class="footer-brand"><span>MD</span> Premier</div>
+  <div style="font-size:12px;color:#888;margin-bottom:1rem;">Commercial & Residential General Contracting</div>
+  <div class="footer-contact">
+    <!-- UPDATE these with real contact info -->
+    <a href="tel:4372207768">(437) 220-7768</a>
+    <a href="mailto:mdpremiercanada@gmail.com">mdpremiercanada@gmail.com</a>
+  </div>
+  <div style="margin-top:1rem;font-size:12px;color:#555;">© 2026 MD Premier. All rights reserved.</div>
+</footer>
+
+<script>
+function switchTab(type, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const cards = document.querySelectorAll('#portfolio-grid .portfolio-card');
+  cards.forEach(card => {
+    card.style.display = (type === 'all' || card.dataset.type === type) ? 'block' : 'none';
+  });
+}
+
+function scrollReviews(direction) {
+  const slider = document.getElementById("reviews-slider");
+  if (!slider) return;
+
+  slider.scrollBy({
+    left: direction * 380,
+    behavior: "smooth"
+  });
+}
+</script>
+</body>
+</html>
